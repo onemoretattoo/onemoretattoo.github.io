@@ -216,7 +216,7 @@ a{color:#111}a:hover{color:#333}
    3. Paste it below. Done: new Instagram posts appear here automatically. */
 const BEHOLD_FEED_URL = 'https://feeds.behold.so/epW9YSNdEhYnuaC1wQnp';
 const FLASH_HASHTAG = '';   // optional: e.g. 'flash' to show only posts tagged #flash. Empty = show every new post
-const MAX_POSTS = 8;
+const MAX_POSTS = 4;   // one clean row on desktop
 
 (function () {
   const grid = document.getElementById('ig-flash');
@@ -224,14 +224,16 @@ const MAX_POSTS = 8;
   if (!/^https:\/\/feeds\.behold\.so\//.test(BEHOLD_FEED_URL)) { grid.style.display = 'none'; return; }
 
   fetch(BEHOLD_FEED_URL)
-    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function (r) { if (!r.ok) throw new Error('Behold feed HTTP ' + r.status + ' (check Domain Whitelist: this page is on ' + location.hostname + ')'); return r.json(); })
     .then(function (feed) {
-      var posts = (feed && feed.posts) || [];
+      var posts = ((feed && feed.posts) || []).slice().sort(function (a, b) {
+        return new Date(b.timestamp || 0) - new Date(a.timestamp || 0);   // newest first (ignores pinned order)
+      });
       var tagged = posts.filter(function (p) {
         return (p.hashtags || []).some(function (h) { return String(h).toLowerCase() === FLASH_HASHTAG; });
       });
       var list = (FLASH_HASHTAG && tagged.length ? tagged : posts).slice(0, MAX_POSTS);
-      if (!list.length) { grid.style.display = 'none'; return; }
+      if (!list.length) { console.warn('[One More] Instagram feed returned 0 posts'); grid.style.display = 'none'; return; }
       grid.innerHTML = '';
       list.forEach(function (p) {
         var c0 = (p.children && p.children[0]) || {};
@@ -258,7 +260,7 @@ const MAX_POSTS = 8;
         grid.appendChild(a);
       });
     })
-    .catch(function () { grid.style.display = 'none'; });
+    .catch(function (e) { console.warn('[One More] Instagram feed not loaded:', e && e.message); grid.style.display = 'none'; });
 })();
 </script>
 </body>
