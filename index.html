@@ -173,14 +173,16 @@ img{max-width:100%;display:block}
 .about p{margin:0;font-size:18px;line-height:1.75;font-weight:300;color:var(--mute-l)}
 .about p.big{font-size:23px;line-height:1.5;color:var(--stone);font-weight:400}
 .about p a{color:var(--stone);text-decoration-color:var(--yellow);text-underline-offset:4px}
-.crew{padding:40px}
-.crew h3{font-family:var(--display);font-weight:400;font-size:30px;text-transform:uppercase;margin:14px 0 24px}
-.crew ul{list-style:none;margin:0;padding:0;columns:2;column-gap:24px}
-.crew li{break-inside:avoid;border-top:1px solid var(--line)}
-.crew li a{display:block;padding:13px 0;font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--mute-l)}
-.crew li a:hover{color:var(--yellow)}
-.crew .pier{margin-top:28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.crew .pier a{font-family:var(--mono);font-size:13px;color:var(--pink);text-decoration:none}
+.facts{padding:40px}
+.facts h3{font-family:var(--display);font-weight:400;font-size:30px;text-transform:uppercase;margin:14px 0 8px}
+.facts .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-top:20px}
+.fact{padding:26px 0;border-top:1px solid var(--line)}
+.fact:nth-child(odd){padding-right:20px}
+.fact:nth-child(even){padding-left:20px;border-left:1px solid var(--line)}
+.fact b{display:block;font-family:var(--display);font-weight:400;font-size:46px;line-height:1;color:var(--stone)}
+.fact b em{font-style:normal;color:var(--yellow);font-size:30px;margin-left:6px}
+.fact span{display:block;margin-top:10px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.facts .meet{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:8px;padding-top:24px;border-top:1px solid var(--line);font-size:15px;color:var(--mute-l)}
 
 /* visit */
 .visit .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:64px;align-items:stretch}
@@ -203,7 +205,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   .qa:nth-child(even){padding-left:0;border-left:0}
   .services{grid-template-columns:1fr}
   .services div:nth-child(even){padding-left:0;border-left:0}
-  .crew ul{columns:1}
+  .fact b{font-size:38px}
   .infobar .cell+.cell{padding-left:0;border-left:0;border-top:1px solid var(--line)}
   .infobar .cell{padding:20px 0}
   .hero{min-height:88vh}
@@ -325,19 +327,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
       <p>After five years of by-appointment projects, we opened One More in Gastown in 2025 for everyone who doesn&#39;t want to wait. Same standards, same hygiene, same love for the craft, just with the door wide open.</p>
       <p>Walk in for flash or a small piece, or book ahead for something bigger. Resident artists, guest artists and a dedicated piercer, all under one roof at 306 Water St.</p>
     </div>
-    <aside class="card crew">
-      <span class="label"><b>●</b> On the floor</span>
-      <h3>The crew</h3>
-      <ul>
-        <li><a href="https://www.instagram.com/draworking/">@draworking</a></li>
-        <li><a href="https://www.instagram.com/slowkingtattoo/">@slowkingtattoo</a></li>
-        <li><a href="https://www.instagram.com/dark_gustavo_tattoo/">@dark_gustavo_tattoo</a></li>
-        <li><a href="https://www.instagram.com/dvrk.graves/">@dvrk.graves</a></li>
-        <li><a href="https://www.instagram.com/zoetattooist/">@zoetattooist</a></li>
-        <li><a href="https://www.instagram.com/daggerpath/">@daggerpath</a></li>
-        <li><a href="https://www.instagram.com/pengjietattooing/">@pengjietattooing</a></li>
-      </ul>
-      <div class="pier"><span class="label">Piercing</span><a href="https://www.instagram.com/trapped.3tpd/">@trapped.3tpd</a></div>
+    <aside class="card facts">
+      <span class="label"><b>●</b> One More at a glance</span>
+      <h3>Why walk in here</h3>
+      <div class="grid2">
+        <div class="fact"><b>4.9<em>★</em></b><span>Google rating</span></div>
+        <div class="fact"><b>2020</b><span>Love More founded</span></div>
+        <div class="fact"><b>7</b><span>Days a week</span></div>
+        <div class="fact"><b>11 PM</b><span>Open late Fri &amp; Sat</span></div>
+      </div>
+      <div class="meet"><span>Meet the artists working this week</span><a class="link" href="https://www.instagram.com/onemoretattoostudio/">On Instagram →</a></div>
     </aside>
   </div>
 </section>
