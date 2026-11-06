@@ -133,7 +133,8 @@ img{max-width:100%;display:block}
 
 /* latest */
 .latest{background:var(--ink-2)}
-#ig-flash{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+#ig-flash{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+@media (max-width:900px){#ig-flash{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
 .post{display:block;text-decoration:none;position:relative}
 .post .ph{overflow:hidden;background:#222}
 .post img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .5s ease,filter .5s ease;filter:saturate(.92)}
@@ -380,7 +381,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
    3. Paste it below. Done: new Instagram posts appear here automatically. */
 const BEHOLD_FEED_URL = 'https://feeds.behold.so/epW9YSNdEhYnuaC1wQnp';
 const FLASH_HASHTAG = '';   // optional: e.g. 'flash' to show only posts tagged #flash. Empty = show every new post
-const MAX_POSTS = 4;   // one clean row on desktop
+const MAX_POSTS = 6;   // 3 x 2 grid on desktop, 2 x 3 on phones
 
 (function () {
   const grid = document.getElementById('ig-flash');
@@ -417,7 +418,8 @@ const MAX_POSTS = 4;   // one clean row on desktop
         var d = p.timestamp ? new Date(p.timestamp).toLocaleDateString('en-CA', { month: 'short', day: 'numeric' }) : 'New';
         var meta = document.createElement('div');
         meta.className = 'meta';
-        meta.innerHTML = '<span>' + d + '</span><span>View →</span>';
+        var isVid = p.mediaType === 'VIDEO' || p.isReel;
+        meta.innerHTML = '<span>' + d + (isVid ? ' · Reel' : '') + '</span><span>' + (isVid ? 'Watch →' : 'View →') + '</span>';
         a.appendChild(ph); a.appendChild(meta);
         grid.appendChild(a);
       });
