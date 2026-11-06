@@ -110,18 +110,6 @@ img{max-width:100%;display:block}
 .infobar .cell+.cell{padding-left:28px;border-left:1px solid var(--line)}
 .infobar .v{font-size:16px;color:var(--stone)}
 .infobar .v small{display:block;font-family:var(--mono);font-size:12px;color:var(--mute-l);letter-spacing:.06em;margin-top:4px}
-/* steam */
-.steam{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.puff{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;
-  background:radial-gradient(circle,rgba(255,255,255,.6) 0%,rgba(250,246,238,.28) 38%,rgba(255,255,255,0) 70%);
-  filter:blur(16px);opacity:0;mix-blend-mode:screen;will-change:transform,opacity;
-  animation:steam-rise var(--d) cubic-bezier(.25,.6,.35,1) var(--dl) infinite}
-@keyframes steam-rise{
-  0%{transform:translate(-50%,0) scale(.35);opacity:0}
-  18%{opacity:var(--o,.7)}
-  60%{opacity:calc(var(--o,.7) * .55)}
-  100%{transform:translate(calc(-50% + var(--dx)),var(--dy,-300px)) scale(2.6);opacity:0}}
-@media (prefers-reduced-motion:reduce){.steam{display:none}}
 /* image band */
 .band{position:relative;min-height:72vh;display:flex;align-items:flex-end;background:#111;overflow:hidden}
 .band::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(60% 55% at 50% 100%,rgba(11,11,10,.82) 0%,rgba(11,11,10,.45) 55%,rgba(11,11,10,0) 100%),linear-gradient(0deg,rgba(11,11,10,.45) 0%,rgba(11,11,10,0) 30%)}
@@ -228,8 +216,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
   .band{display:block;min-height:0}
   .band .bg{position:relative;height:52vh;object-position:30% 70%}
   .band::before{display:none}
-  .band .steam{bottom:auto;height:52vh}
-  .puff{top:calc(var(--y) + 24%)}
   .band .wrap{align-items:flex-start;text-align:left;padding-top:32px;padding-bottom:56px;background:var(--ink)}
   .nav .wrap{min-height:60px;row-gap:0}
   .nav-links{gap:0 18px;font-size:11px;letter-spacing:.12em}
@@ -362,14 +348,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;
 
 <section class="band" aria-label="Gastown Steam Clock on Water Street">
   <img class="bg" src="images/gastown-steam-clock-1600.webp" srcset="images/gastown-steam-clock-800.webp 800w, images/gastown-steam-clock-1600.webp 1448w" sizes="100vw" alt="" width="1448" height="1086" loading="lazy" decoding="async">
-  <div class="steam" aria-hidden="true">
-    <span class="puff" style="--x:24%;--y:16%;--s:120px;--d:11s;--dl:0s;--dx:-60px"></span>
-    <span class="puff" style="--x:31%;--y:10%;--s:150px;--d:13s;--dl:2.2s;--dx:40px"></span>
-    <span class="puff" style="--x:38%;--y:15%;--s:110px;--d:10s;--dl:4.5s;--dx:90px"></span>
-    <span class="puff" style="--x:27%;--y:14%;--s:170px;--d:15s;--dl:6.8s;--dx:-30px;--o:.55"></span>
-    <span class="puff" style="--x:35%;--y:12%;--s:130px;--d:12s;--dl:8.6s;--dx:70px"></span>
-    <span class="puff" style="--x:30%;--y:18%;--s:200px;--d:17s;--dl:3.4s;--dx:120px;--dy:-360px;--o:.4"></span>
-  </div>
   <div class="wrap">
     <span class="label" style="color:#CFC9BC">Gastown · Vancouver</span>
     <h2>Steps from the Steam Clock</h2>
